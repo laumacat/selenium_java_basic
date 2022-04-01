@@ -39,7 +39,7 @@ public class Task1 {
         WebElement enterNumber = driver.findElement(By.id("numb"));
         enterNumber.sendKeys(textToEnter);
         driver.findElement(By.tagName("button")).click();
-        assertEquals("Please enter a number",driver.findElement(By.id("ch1_error")).getText());
+        assertEquals("Please enter a number", driver.findElement(By.id("ch1_error")).getText());
 
     }
 
@@ -52,7 +52,7 @@ public class Task1 {
         enterNumber.sendKeys(smallNumber);
         driver.findElement(By.tagName("button")).click();
 
-        assertEquals("Number is too small",driver.findElement(By.id("ch1_error")).getText());
+        assertEquals("Number is too small", driver.findElement(By.id("ch1_error")).getText());
 
 
     }
@@ -67,7 +67,7 @@ public class Task1 {
         WebElement enterNumber = driver.findElement(By.id("numb"));
         enterNumber.sendKeys(bigNumber);
         driver.findElement(By.tagName("button")).click();
-        assertEquals("Number is too big",driver.findElement(By.id("ch1_error")).getText());
+        assertEquals("Number is too big", driver.findElement(By.id("ch1_error")).getText());
 
     }
 
@@ -76,20 +76,23 @@ public class Task1 {
 //        TODO
 //        enter a number between 50 and 100 digit in the input (square root of which doesn't have a remainder, e.g. 2 is square root of 4),
 //        then and press submit and check that correct no error is seen and check that square root is calculated correctly
+
         String correctNumber = "64";
+        String correctAnswer = "8.00";
         WebElement enterNumber = driver.findElement(By.id("numb"));
         enterNumber.sendKeys(correctNumber);
         driver.findElement(By.tagName("button")).click();
 
         Alert resultAlert = driver.switchTo().alert();
 
+        assertEquals("Square root of " + correctNumber + " is " + correctAnswer, resultAlert.getText());
         assertEquals("Square root of 64 is 8.00", resultAlert.getText());
         resultAlert.accept();
 
-        assertEquals("",driver.findElement(By.id("ch1_error")).getText());
-
+        assertEquals("", driver.findElement(By.id("ch1_error")).getText());
 
     }
+
 
     @Test
     public void correctSquareRootWithRemainder() {
@@ -106,10 +109,10 @@ public class Task1 {
         assertEquals("Square root of 73 is 8.54", resultAlert.getText());
         resultAlert.accept();
 
-        assertEquals("",driver.findElement(By.id("ch1_error")).getText());
-
-
+        assertEquals("", driver.findElement(By.id("ch1_error")).getText());
 
 
     }
+
+
 }
