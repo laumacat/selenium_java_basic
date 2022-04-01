@@ -37,25 +37,50 @@ public class Sample2Task {
     public void findElementByID() throws Exception {
 //         TODO:
 //         get text "Heading 2 text" using id
+        System.out.println(driver.findElement(By.id("heading_2")).getText());
     }
 
     @Test
     public void findElementByName() throws Exception {
 //         TODO:
 //         get attribute "id" and "value" of button "This is also a button" using name
+
+//      from Lauma: first need to find the name that is in Inspection. In html it has a name "randomButton2"
+        System.out.println(driver.findElement(By.name("randomButton2")).getAttribute("id"));
+        System.out.println(driver.findElement(By.name("randomButton2")).getAttribute("value"));
+
+
     }
 
     @Test
     public void findElementByClassFirst() throws Exception {
 //         TODO:
 //         get first text of class "test" (should be "Test Text 1")
+        System.out.println(driver.findElements(By.className("test")).get(0).getText());
+        //Next will also return first text
+        System.out.println(driver.findElement(By.className("test")).getText());
     }
 
     @Test
     public void findElementByClassAll() throws Exception {
 //         TODO:
 //         get size text of class "test" (should be 5)
-//         get text of class "test"
-//         get third text of class "test" (should be "Test Text 4")
+        System.out.println(driver.findElement(By.className("test")).getSize());
+
+//         get text of class "test" (all text, not just first)
+        List<WebElement> allElements = driver.findElements(By.className("test"));
+        System.out.println("All class elements:");
+        for (WebElement element : allElements){
+            System.out.println(element.getText());
+        }
+
+//        get third text of class "test" (should be "Test Text 4")
+        System.out.println("-------------:");
+        System.out.println(allElements.get(2).getText());
+        //the same result as above
+        System.out.println("-------------:");
+        System.out.println(driver.findElements(By.className("test")).get(2).getText());
+
+
     }
 }
