@@ -220,7 +220,6 @@ public class Task2 {
         assertEquals(age, driver.findElement(By.id("fb_age")).getAttribute("value"));
         assertEquals(comment, driver.findElement(By.tagName("textarea")).getAttribute("value"));
 
-//        assertEquals(language, driver.findElement(By.cssSelector("input[value='" + language + "']")).getAttribute("value"));
         assertTrue(driver.findElement(By.cssSelector("input[value='" + language + "']")).isSelected());
         assertTrue(driver.findElement(By.cssSelector("input[value='" + gender + "']")).isSelected());
 
