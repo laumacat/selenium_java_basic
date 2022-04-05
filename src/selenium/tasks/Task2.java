@@ -34,9 +34,9 @@ public class Task2 {
     public void initialFeedbackPage() throws Exception {
 //         TODO:
 //         check that all field are empty and no tick are clicked
-        assertEquals("", driver.findElement(By.id("fb_name")).getText());
-        assertEquals("", driver.findElement(By.id("fb_age")).getText());
-        assertEquals("", driver.findElement(By.tagName("textarea")).getText());
+        assertEquals("", driver.findElement(By.id("fb_name")).getAttribute("value"));
+        assertEquals("", driver.findElement(By.id("fb_age")).getAttribute("value"));
+        assertEquals("", driver.findElement(By.tagName("textarea")).getAttribute("value"));
 
         assertFalse(driver.findElements(By.cssSelector("#lang_check > .w3-check")).get(0).isSelected());
         assertFalse(driver.findElements(By.cssSelector("#lang_check > .w3-check")).get(1).isSelected());
