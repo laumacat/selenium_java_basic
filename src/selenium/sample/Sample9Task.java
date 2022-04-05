@@ -136,10 +136,7 @@ public class Sample9Task {
          * 5) check that both button and loading text is not seen, success is seen instead
          */
 
-        // driver.get ---? the explicit didn't work for beginning? why?
-//        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class);
-//        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("start_green_and_blue")));
-//
+
 //        0) wait until button to load green and blue appears
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         //next line needed to find that expected element has loaded
@@ -158,11 +155,37 @@ public class Sample9Task {
 
         assertTrue(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
 
-        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 5).ignoring(StaleElementReferenceException.class);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("loading_blue_without_green")));
-///For Lauma - check which loading is correct in each case!!
+        WebDriverWait wait1 = (WebDriverWait) new WebDriverWait(driver, 5).ignoring(StaleElementReferenceException.class);
+        wait1.until(ExpectedConditions.presenceOfElementLocated(By.id("loading_green_with_blue")));
+
         assertTrue(driver.findElement(By.id("loading_green_with_blue")).isDisplayed());
         assertEquals("Loading blue...",driver.findElement(By.id("loading_green_with_blue")).getText());
+
+
+//        4) check that button and loading green does not appear,
+//
+        WebDriverWait wait2 = (WebDriverWait) new WebDriverWait(driver, 5).ignoring(StaleElementReferenceException.class);
+        wait2.until(ExpectedConditions.presenceOfElementLocated(By.id("loading_blue_without_green")));
+
+        assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
+
+//        * but loading text is seen instead for blue and success for green is seen
+        assertTrue(driver.findElement(By.id("loading_blue_without_green")).isDisplayed());
+        assertEquals("Loading blue...",driver.findElement(By.id("loading_green_with_blue")).getText());
+        assertEquals("Green finished waiting for blue",driver.findElement(By.id("loading_blue_without_green")).getText());
+
+
+//        5) check that both button and loading text is not seen, success is seen instead
+        WebDriverWait wait3 = (WebDriverWait) new WebDriverWait(driver, 5).ignoring(StaleElementReferenceException.class);
+        wait3.until(ExpectedConditions.presenceOfElementLocated(By.id("finish_green_and_blue")));
+
+        assertFalse(driver.findElement(By.id("start_green_and_blue")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_green_without_blue")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_blue_without_green")).isDisplayed());
+
+        assertTrue(driver.findElement(By.id("finish_green_and_blue")).isDisplayed());
+        assertEquals("Green and Blue Loaded",driver.findElement(By.id("finish_green_and_blue")).getText());
 
 
 
